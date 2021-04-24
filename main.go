@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/kbh0581/techPublish-grpc/test/sampleProto"
+	pb "github.com/kbh0581/techPublish-grpc/test/sampleProto"
 	"github.com/kbh0581/techPublish-grpc/test/sampleService"
 	"google.golang.org/grpc"
 )
@@ -14,20 +14,21 @@ import (
 const serverPort = ":9000"
 
 type testServer struct {
-	sampleProto.TestServer
+	pb.TestServer
 }
 
-func (s *testServer) GetList(ctx context.Context, req *sampleProto.ReqList) *sampleProto.ResponsList {
-	testmesage := make([]*sampleProto.Response, len(sampleService.TestData))
+// 구현
+func (s *testServer) GetSample(ctx context.Context, req *pb.ReqList) (*pb.ResponsList, error) {
+	testmesage := make([]*pb.Response, len(sampleService.TestData))
 	for i, u := range sampleService.TestData {
 		print("data:" + "i")
 		print("data u:" + "u")
 		testmesage[i] = u
 	}
 
-	return &sampleProto.ResponsList{
+	return &pb.ResponsList{
 		Res: testmesage,
-	}
+	}, nil
 }
 
 func main() {
@@ -44,7 +45,7 @@ func main() {
 
 	log.Print("grpcServeron")
 	grpcServer := grpc.NewServer()
-	sampleProto.RegisterTestServer(grpcServer, &testServer{})
+	pb.RegisterTestServer(grpcServer, &testServer{})
 
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("fail serve : %s", err)
