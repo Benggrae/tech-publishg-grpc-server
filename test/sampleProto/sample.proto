@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "techPublishgRpc-server/test/sampleProto";
+
+message Request {
+  string test = 1;
+  int32 a = 2;
+}
+
+message Response {
+  string test = 1;
+  int32 a =2;
+}
+
+message ReqList {}
+message ResponsList {
+  // 배열의 의미
+  repeated Response res = 1;
+}
+
+service test{
+  rpc getTest(Request) returns (Response);
+  rpc getTestList(ReqList) returns (ResponsList);
+}
+
+//protoc -I=. --go_out . --go_opt paths=source_relative --go-grpc_out . --go-grpc_opt paths=source_relative test/sampleProto/sample.proto
