@@ -39,6 +39,9 @@ func main() {
 	//nil 없음
 	// go mod init "패키지 매니저"
 	// go get -u  최신 버전 가져옴
+
+	GetHtml("https://woowabros.github.io/")
+
 	if err != nil {
 		log.Fatal(err)
 	}
