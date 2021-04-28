@@ -2,13 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net"
 
+	"github.com/kbh0581/techPublish-grpc/scrapper"
 	pb "github.com/kbh0581/techPublish-grpc/test/sampleProto"
 	"github.com/kbh0581/techPublish-grpc/test/sampleService"
-	"google.golang.org/grpc"
 )
 
 const serverPort = ":9000"
@@ -40,19 +39,19 @@ func main() {
 	// go mod init "패키지 매니저"
 	// go get -u  최신 버전 가져옴
 
-	GetHtml("https://woowabros.github.io/")
+	//GetHtml("https://woowabros.github.io/")
+	scrapper.RunScrapper()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	log.Print("grpcServeron")
-	grpcServer := grpc.NewServer()
-	pb.RegisterTestServer(grpcServer, &testServer{})
+	// log.Print("grpcServeron")
+	// grpcServer := grpc.NewServer()
+	// pb.RegisterTestServer(grpcServer, &testServer{})
 
-	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatalf("fail serve : %s", err)
-	}
+	// if err := grpcServer.Serve(lis); err != nil {
+	// 	log.Fatalf("fail serve : %s", err)
+	// }
 
-	fmt.Print("hellow")
 }
