@@ -1,6 +1,7 @@
 package scrapper
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -59,11 +60,12 @@ func getMonthInt(month string) int {
 
 const Wowha = "Wowha"
 
-func RunScrapper() {
+func WoowaScrapper() {
 	//컬리 생성
 	c := colly.NewCollector()
 	woowaRoot := "https://woowabros.github.io"
 	defer c.Visit(woowaRoot)
+	var woahDocList []wohaTechDoc
 
 	//html 찾기
 	c.OnHTML(".list", func(elList *colly.HTMLElement) {
@@ -73,8 +75,6 @@ func RunScrapper() {
 			postMeta := el.ChildText(".post-meta")
 
 			meta := strings.Split(postMeta, ",")
-			println(el.ChildText(".post-meta"))
-			println(postMeta)
 
 			doc.author = strings.TrimSpace(meta[len(meta)-1])
 			year, _ := strconv.Atoi(strings.TrimSpace(meta[1]))
@@ -85,14 +85,21 @@ func RunScrapper() {
 			doc.time = time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
 			doc.link = el.ChildAttr("a", "href")
 
+			woahDocList = append(woahDocList, doc) //배열추가
+
 			//println(year, month, day)
 
 			//println(strings.Split(meta[0], " ")[0])
 
-			log.Print("wohaTechDoc:", doc)
-
 		})
 	})
+
+	//저장후
+	c.OnScraped(func(r *colly.Response) {
+		fmt.Print(woahDocList)
+	})
+
+	defer fmt.Println(woahDocList)
 
 	c.OnRequest(func(r *colly.Request) {
 		log.Println("방문 ::", r.URL)
