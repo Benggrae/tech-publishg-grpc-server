@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/kbh0581/techPublish-grpc/scrapper"
+	"github.com/kbh0581/techPublish-grpc/techService"
 	pb "github.com/kbh0581/techPublish-grpc/test/sampleProto"
 	"github.com/kbh0581/techPublish-grpc/test/sampleService"
 )
@@ -40,7 +40,9 @@ func main() {
 	// go get -u  최신 버전 가져옴
 
 	//GetHtml("https://woowabros.github.io/")
-	scrapper.RunScrapper()
+	//scrapper.WoowaScrapper()
+	//mongo.GetConnetion()
+	techService.ScrapperService()
 
 	if err != nil {
 		log.Fatal(err)
