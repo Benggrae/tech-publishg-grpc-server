@@ -1,4 +1,4 @@
-package mongo
+package mongoUtill
 
 import (
 	"context"
@@ -44,6 +44,7 @@ func getAuth() MongoAuth {
 	return authData
 }
 
+// 커넥션
 func GetConnetion() (client *mongo.Client, ctx context.Context, cancel context.CancelFunc) {
 	//타임아웃 설정
 	ctx, cancel = context.WithTimeout(context.Background(), 30*time.Second)

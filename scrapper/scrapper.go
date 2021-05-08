@@ -10,13 +10,6 @@ import (
 	"github.com/gocolly/colly"
 )
 
-type wohaTechDoc struct {
-	author string
-	time   time.Time
-	title  string
-	link   string
-}
-
 func getMonthInt(month string) int {
 	if strings.LastIndex(month, "Jan") > -1 {
 		return 1
@@ -60,43 +53,54 @@ func getMonthInt(month string) int {
 
 const Wowha = "Wowha"
 
-func WoowaScrapper() {
+type WohaTechDoc struct {
+	Author string
+	Time   time.Time
+	Title  string
+	Link   string
+	Detail string
+}
+
+func (s *WohaTechDoc) dateMaker(meta []string) time.Time {
+	tempText := strings.Split(meta[0], " ")
+	year, _ := strconv.Atoi(strings.TrimSpace(meta[1]))
+	month := getMonthInt(tempText[0])
+	day, _ := strconv.Atoi(tempText[1])
+
+	s.Time = time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
+
+	return s.Time
+}
+
+func WoowaScrapper(scrapperCallback func(a []WohaTechDoc)) {
 	//컬리 생성
 	c := colly.NewCollector()
 	woowaRoot := "https://woowabros.github.io"
 	defer c.Visit(woowaRoot)
-	var woahDocList []wohaTechDoc
+
+	var woahDocList []WohaTechDoc
 
 	//html 찾기
 	c.OnHTML(".list", func(elList *colly.HTMLElement) {
 		elList.ForEach(".list-module", func(index int, el *colly.HTMLElement) {
 
-			doc := wohaTechDoc{}
+			doc := WohaTechDoc{}
+
+			doc.Title = el.ChildText(".post-link")
+			doc.Detail = el.ChildText(".post-description")
+			doc.Link = el.ChildAttr("a", "href")
+
 			postMeta := el.ChildText(".post-meta")
-
 			meta := strings.Split(postMeta, ",")
-
-			doc.author = strings.TrimSpace(meta[len(meta)-1])
-			year, _ := strconv.Atoi(strings.TrimSpace(meta[1]))
-			tempText := strings.Split(meta[0], " ")
-			month := getMonthInt(tempText[0])
-			day, _ := strconv.Atoi(tempText[1])
-
-			doc.time = time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.UTC)
-			doc.link = el.ChildAttr("a", "href")
-
+			doc.Author = strings.TrimSpace(meta[len(meta)-1])
+			doc.dateMaker(meta)
 			woahDocList = append(woahDocList, doc) //배열추가
-
-			//println(year, month, day)
-
-			//println(strings.Split(meta[0], " ")[0])
-
 		})
 	})
 
 	//저장후
 	c.OnScraped(func(r *colly.Response) {
-		fmt.Print(woahDocList)
+		scrapperCallback(woahDocList)
 	})
 
 	defer fmt.Println(woahDocList)
