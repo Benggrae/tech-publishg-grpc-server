@@ -88,7 +88,7 @@ func WoowaScrapper(scrapperCallback func(a []WohaTechDoc)) {
 
 			doc.Title = el.ChildText(".post-link")
 			doc.Detail = el.ChildText(".post-description")
-			doc.Link = el.ChildAttr("a", "href")
+			doc.Link = woowaRoot + el.ChildAttr("a", "href")
 
 			postMeta := el.ChildText(".post-meta")
 			meta := strings.Split(postMeta, ",")

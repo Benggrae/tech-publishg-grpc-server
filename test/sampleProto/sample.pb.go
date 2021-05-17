@@ -20,61 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Request struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Test string `protobuf:"bytes,1,opt,name=test,proto3" json:"test,omitempty"`
-	A    int32  `protobuf:"varint,2,opt,name=a,proto3" json:"a,omitempty"`
-}
-
-func (x *Request) Reset() {
-	*x = Request{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_test_sampleProto_sample_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Request) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Request) ProtoMessage() {}
-
-func (x *Request) ProtoReflect() protoreflect.Message {
-	mi := &file_test_sampleProto_sample_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Request.ProtoReflect.Descriptor instead.
-func (*Request) Descriptor() ([]byte, []int) {
-	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Request) GetTest() string {
-	if x != nil {
-		return x.Test
-	}
-	return ""
-}
-
-func (x *Request) GetA() int32 {
-	if x != nil {
-		return x.A
-	}
-	return 0
-}
-
 type Response struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -87,7 +32,7 @@ type Response struct {
 func (x *Response) Reset() {
 	*x = Response{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_sampleProto_sample_proto_msgTypes[1]
+		mi := &file_test_sampleProto_sample_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -100,7 +45,7 @@ func (x *Response) String() string {
 func (*Response) ProtoMessage() {}
 
 func (x *Response) ProtoReflect() protoreflect.Message {
-	mi := &file_test_sampleProto_sample_proto_msgTypes[1]
+	mi := &file_test_sampleProto_sample_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113,7 +58,7 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Response.ProtoReflect.Descriptor instead.
 func (*Response) Descriptor() ([]byte, []int) {
-	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{1}
+	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Response) GetTest() string {
@@ -139,7 +84,7 @@ type ReqList struct {
 func (x *ReqList) Reset() {
 	*x = ReqList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_sampleProto_sample_proto_msgTypes[2]
+		mi := &file_test_sampleProto_sample_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -152,7 +97,7 @@ func (x *ReqList) String() string {
 func (*ReqList) ProtoMessage() {}
 
 func (x *ReqList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_sampleProto_sample_proto_msgTypes[2]
+	mi := &file_test_sampleProto_sample_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -165,7 +110,7 @@ func (x *ReqList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqList.ProtoReflect.Descriptor instead.
 func (*ReqList) Descriptor() ([]byte, []int) {
-	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{2}
+	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{1}
 }
 
 type ResponsList struct {
@@ -180,7 +125,7 @@ type ResponsList struct {
 func (x *ResponsList) Reset() {
 	*x = ResponsList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_test_sampleProto_sample_proto_msgTypes[3]
+		mi := &file_test_sampleProto_sample_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -193,7 +138,7 @@ func (x *ResponsList) String() string {
 func (*ResponsList) ProtoMessage() {}
 
 func (x *ResponsList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_sampleProto_sample_proto_msgTypes[3]
+	mi := &file_test_sampleProto_sample_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -206,7 +151,7 @@ func (x *ResponsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResponsList.ProtoReflect.Descriptor instead.
 func (*ResponsList) Descriptor() ([]byte, []int) {
-	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{3}
+	return file_test_sampleProto_sample_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResponsList) GetRes() []*Response {
@@ -221,24 +166,19 @@ var File_test_sampleProto_sample_proto protoreflect.FileDescriptor
 var file_test_sampleProto_sample_proto_rawDesc = []byte{
 	0x0a, 0x1d, 0x74, 0x65, 0x73, 0x74, 0x2f, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x50, 0x72, 0x6f,
 	0x74, 0x6f, 0x2f, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22,
-	0x2b, 0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65,
-	0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12, 0x0c,
-	0x0a, 0x01, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x61, 0x22, 0x2c, 0x0a, 0x08,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x73, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12, 0x0c, 0x0a, 0x01,
-	0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x61, 0x22, 0x09, 0x0a, 0x07, 0x52, 0x65,
-	0x71, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x2a, 0x0a, 0x0b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x4c, 0x69, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x03, 0x72, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x09, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x03, 0x72, 0x65,
-	0x73, 0x32, 0x4d, 0x0a, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x07, 0x67, 0x65, 0x74,
-	0x54, 0x65, 0x73, 0x74, 0x12, 0x08, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x09,
-	0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x25, 0x0a, 0x0b, 0x67, 0x65, 0x74,
-	0x54, 0x65, 0x73, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x08, 0x2e, 0x52, 0x65, 0x71, 0x4c, 0x69,
-	0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x4c, 0x69, 0x73, 0x74,
-	0x42, 0x29, 0x5a, 0x27, 0x74, 0x65, 0x63, 0x68, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x67,
-	0x52, 0x70, 0x63, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x2f,
-	0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x2c, 0x0a, 0x08, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x74,
+	0x65, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12,
+	0x0c, 0x0a, 0x01, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x01, 0x61, 0x22, 0x09, 0x0a,
+	0x07, 0x52, 0x65, 0x71, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x2a, 0x0a, 0x0b, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1b, 0x0a, 0x03, 0x72, 0x65, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52,
+	0x03, 0x72, 0x65, 0x73, 0x32, 0x2b, 0x0a, 0x04, 0x74, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x09,
+	0x67, 0x65, 0x74, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x08, 0x2e, 0x52, 0x65, 0x71, 0x4c,
+	0x69, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x4c, 0x69, 0x73,
+	0x74, 0x42, 0x29, 0x5a, 0x27, 0x74, 0x65, 0x63, 0x68, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68,
+	0x67, 0x52, 0x70, 0x63, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x74, 0x65, 0x73, 0x74,
+	0x2f, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -253,21 +193,18 @@ func file_test_sampleProto_sample_proto_rawDescGZIP() []byte {
 	return file_test_sampleProto_sample_proto_rawDescData
 }
 
-var file_test_sampleProto_sample_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_test_sampleProto_sample_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_test_sampleProto_sample_proto_goTypes = []interface{}{
-	(*Request)(nil),     // 0: Request
-	(*Response)(nil),    // 1: Response
-	(*ReqList)(nil),     // 2: ReqList
-	(*ResponsList)(nil), // 3: ResponsList
+	(*Response)(nil),    // 0: Response
+	(*ReqList)(nil),     // 1: ReqList
+	(*ResponsList)(nil), // 2: ResponsList
 }
 var file_test_sampleProto_sample_proto_depIdxs = []int32{
-	1, // 0: ResponsList.res:type_name -> Response
-	0, // 1: test.getTest:input_type -> Request
-	2, // 2: test.getTestList:input_type -> ReqList
-	1, // 3: test.getTest:output_type -> Response
-	3, // 4: test.getTestList:output_type -> ResponsList
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	0, // 0: ResponsList.res:type_name -> Response
+	1, // 1: test.getSample:input_type -> ReqList
+	2, // 2: test.getSample:output_type -> ResponsList
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -280,18 +217,6 @@ func file_test_sampleProto_sample_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_test_sampleProto_sample_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_test_sampleProto_sample_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Response); i {
 			case 0:
 				return &v.state
@@ -303,7 +228,7 @@ func file_test_sampleProto_sample_proto_init() {
 				return nil
 			}
 		}
-		file_test_sampleProto_sample_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_test_sampleProto_sample_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ReqList); i {
 			case 0:
 				return &v.state
@@ -315,7 +240,7 @@ func file_test_sampleProto_sample_proto_init() {
 				return nil
 			}
 		}
-		file_test_sampleProto_sample_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_test_sampleProto_sample_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResponsList); i {
 			case 0:
 				return &v.state
@@ -334,7 +259,7 @@ func file_test_sampleProto_sample_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_test_sampleProto_sample_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

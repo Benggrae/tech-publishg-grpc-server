@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/kbh0581/techPublish-grpc/techService"
+	"github.com/kbh0581/techPublish-grpc/scrapperService"
 	pb "github.com/kbh0581/techPublish-grpc/test/sampleProto"
 	"github.com/kbh0581/techPublish-grpc/test/sampleService"
 )
@@ -42,7 +42,7 @@ func main() {
 	//GetHtml("https://woowabros.github.io/")
 	//scrapper.WoowaScrapper()
 	//mongo.GetConnetion()
-	techService.ScrapperService()
+	scrapperService.ScrapperService()
 
 	if err != nil {
 		log.Fatal(err)
