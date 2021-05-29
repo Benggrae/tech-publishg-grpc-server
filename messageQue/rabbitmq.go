@@ -1,8 +1,11 @@
 package messageQue
 
 import (
+	"fmt"
 	"log"
 
+	"github.com/kbh0581/techPublish-grpc/configue"
+	"github.com/mitchellh/mapstructure"
 	"github.com/streadway/amqp"
 )
 
@@ -12,10 +15,28 @@ func failOnErr(err error, msg string) {
 	}
 }
 
+type RabbitAuth struct {
+	Username string
+	Password string
+	Hostname string
+}
+
+func getAuth() RabbitAuth {
+	var authData RabbitAuth
+	data := configue.GetConnectionData("rabbitMq")
+	err := mapstructure.Decode(data, &authData)
+	if err != nil {
+		fmt.Errorf(err.Error())
+	}
+	return authData
+}
+
 func RabbitConnect() {
 	// amqp://username:pw@host
 	// 연결
-	con, err := amqp.Dial("")
+	authData := getAuth()
+
+	con, err := amqp.Dial(fmt.Sprintf("amqp://%s:%s%s/", authData.Username, authData.Password, authData.Hostname))
 	failOnErr(err, "connect Fail..")
 
 	ch, err := con.Channel()

@@ -16,6 +16,7 @@ require (
 	github.com/kennygrant/sanitize v1.2.4 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-runewidth v0.0.12 // indirect
+	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/peterh/liner v1.2.1 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/russross/blackfriday v1.6.0 // indirect
@@ -23,6 +24,7 @@ require (
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/spf13/cobra v1.1.3 // indirect
+	github.com/streadway/amqp v1.0.0 // indirect
 	github.com/temoto/robotstxt v1.1.2 // indirect
 	go.mongodb.org/mongo-driver v1.5.2 // indirect
 	go.starlark.net v0.0.0-20210416142453-1607a96e3d72 // indirect

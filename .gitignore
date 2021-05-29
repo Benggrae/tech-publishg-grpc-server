@@ -1,7 +1,7 @@
 /.history
 /.vscode
 /go.sum
-mongo_auth.json
+connection.json
 __debug_bin
 *.pb.go
 

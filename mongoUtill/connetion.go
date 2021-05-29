@@ -2,13 +2,12 @@ package mongoUtill
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/url"
-	"os"
 	"time"
 
+	"github.com/kbh0581/techPublish-grpc/configue"
+	"github.com/mitchellh/mapstructure"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -23,24 +22,12 @@ type MongoAuth struct {
 }
 
 func getAuth() MongoAuth {
-	data, err := os.Open("./mongo_auth.json")
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	var authData MongoAuth
-	byteValue, err := ioutil.ReadAll(data)
-
+	data := configue.GetConnectionData("mongo")
+	err := mapstructure.Decode(data, &authData)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Errorf(err.Error())
 	}
-	err = json.Unmarshal(byteValue, &authData)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	return authData
 }
 
