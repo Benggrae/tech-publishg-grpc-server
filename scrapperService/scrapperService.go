@@ -103,6 +103,7 @@ func existWooha(arr []scrapper.WohaTechDoc) []interface{} {
 
 }
 
+// 저장
 func insertWooha(jobs []interface{}) {
 	connet := getMongoPostConnet()
 	defer connet.Client.Disconnect(connet.Ctx)
