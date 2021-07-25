@@ -2,10 +2,12 @@ package scrapperService
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"sync"
 	"time"
 
+	"github.com/kbh0581/techPublish-grpc/messageQue"
 	"github.com/kbh0581/techPublish-grpc/mongoUtill"
 	"github.com/kbh0581/techPublish-grpc/scrapper"
 	"go.mongodb.org/mongo-driver/bson"
@@ -119,12 +121,17 @@ func insertWooha(jobs []interface{}) {
 
 func ScrapperService() {
 	scrapper.WoowaScrapper(func(a []scrapper.WohaTechDoc) {
-		//deleteAll()
+		deleteAll();
 		jobs := existWooha(a)
 		if len(a) != 0 {
 			insertWooha(jobs)
+
+			v, err := json.Marshal(jobs)
+			if err != nil {
+				fmt.Println(err)
+			}
+			messageQue.SendMessage(messageQue.RabbitMessage{QueeName: "hello", ContentType: "application/json", Mesage: string(v)})
+
 		}
-
 	})
-
 }

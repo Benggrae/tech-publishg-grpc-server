@@ -31,7 +31,40 @@ func getAuth() RabbitAuth {
 	return authData
 }
 
-func RabbitConnect() {
+type RabbitMessage struct {
+	QueeName    string
+	ContentType string
+	Mesage      string
+}
+
+//메시지 전송
+func SendMessage(message RabbitMessage) {
+	con, ch := rabbitConnect()
+
+	q, err := ch.QueueDeclare(message.QueeName,
+		false,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	body := message.Mesage
+
+	err = ch.Publish(
+		"",
+		q.Name,
+		false,
+		false,
+		amqp.Publishing{
+			ContentType: message.ContentType,
+			Body:        []byte(body),
+		})
+	failOnErr(err, "sened Error")
+	defer con.Close()
+}
+
+func rabbitConnect() (*amqp.Connection, *amqp.Channel) {
 	// amqp://username:pw@host
 	// 연결
 	authData := getAuth()
@@ -40,29 +73,8 @@ func RabbitConnect() {
 	failOnErr(err, "connect Fail..")
 
 	ch, err := con.Channel()
-	failOnErr(err, "fail opne connect Fail..")
+	failOnErr(err, "not opne connect Fail..")
 
-	q, err := ch.QueueDeclare(
-		"hello",
-		false,
-		false,
-		false,
-		false,
-		nil,
-	)
+	return con, ch
 
-	body := "hi"
-	err = ch.Publish(
-		"",
-		q.Name,
-		false,
-		false,
-		amqp.Publishing{
-			ContentType: "text/plan",
-			Body:        []byte(body),
-		})
-
-	failOnErr(err, "sened Errro")
-
-	defer con.Close()
 }

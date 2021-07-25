@@ -3,8 +3,7 @@ package main
 import (
 	"context"
 
-	"github.com/kbh0581/techPublish-grpc/configue"
-	"github.com/kbh0581/techPublish-grpc/messageQue"
+	"github.com/kbh0581/techPublish-grpc/scrapperService"
 	pb "github.com/kbh0581/techPublish-grpc/test/sampleProto"
 	"github.com/kbh0581/techPublish-grpc/test/sampleService"
 )
@@ -30,7 +29,6 @@ func (s *testServer) GetSample(ctx context.Context, req *pb.ReqList) (*pb.Respon
 }
 
 func main() {
-	configue.GetConnectionData("mongo")
 
 	//lis, err := net.Listen("tcp", serverPort)
 
@@ -41,9 +39,18 @@ func main() {
 
 	//GetHtml("https://woowabros.github.io/")
 	//scrapper.WoowaScrapper()
-	//mongo.GetConnetion()
-	//scrapperService.ScrapperService()
-	messageQue.RabbitConnect()
+	//connection.GetConnetion()
+
+	scrapperService.ScrapperService()
+
+	// for {
+
+	// 	in := bufio.NewReader(os.Stderr)
+	// 	line, _ := in.ReadString('\n')
+	// 	messageQue.SendMessage(messageQue.RabbitMessage{
+	// 		QueeName: "hello", ContentType: "application/json", Mesage: line})
+
+	// }
 
 	//if err != nil {
 	//log.Fatal(err)
