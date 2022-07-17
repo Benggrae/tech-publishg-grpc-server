@@ -1,4 +1,4 @@
-# techPublishgRpc-server
+# tech-publish-gRpc-server
 
 
 * GO Scrapper And GrpcServer
